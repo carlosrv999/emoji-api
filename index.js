@@ -5,7 +5,7 @@ const port = 3000
 var mysql = require('mysql');
 const dbConnectionParams = {
   connectionLimit : 10,
-  host            : 'localhost',
+  host            : '10.200.0.107',
   port            : 3306,
   user            : 'emojiuser',
   password        : 'DcS5Gb7Gs2W#',
