@@ -3,15 +3,7 @@ const cors = require('cors')
 const app = express()
 const port = 3000
 var mysql = require('mysql');
-const dbConnectionParams = {
-  connectionLimit : 10,
-  host            : '10.200.0.107',
-  port            : 3306,
-  user            : 'emojiuser',
-  password        : 'DcS5Gb7Gs2W#',
-  database        : 'emoji',
-  charset         : 'utf8mb4'
-}
+const dbConnectionParams = require("./db-config");
 var connectionTest = mysql.createConnection(dbConnectionParams);
 module.exports.pool  = mysql.createPool(dbConnectionParams);
 
