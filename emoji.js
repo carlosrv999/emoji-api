@@ -16,4 +16,13 @@ router.get('/emoji', function(req, res) {
   });
 });
 
+router.get('/api/emoji', function(req, res) {
+  pool.query('SELECT * from emojis', function (error, results, fields) {
+    if (error) {
+      res.status(500).send(error);
+    };
+    res.send(results);
+  });
+});
+
 module.exports = router;
