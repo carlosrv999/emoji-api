@@ -7,7 +7,7 @@ import {server, grpc} from './grpc-server.js'
 
 const app = express()
 const port = 3000
-const grpcPort = 50051
+const grpcPort = 50050
 var connectionTest = mysql.createConnection(dbConnectionParams)
 export const pool = mysql.createPool(dbConnectionParams)
 
