@@ -1,11 +1,13 @@
-const express = require('express')
-const cors = require('cors')
+import express from 'express'
+import cors from 'cors'
+import mysql from 'mysql'
+import router from './emoji.js'
+import { dbConnectionParams } from './db-config.js'
+
 const app = express()
 const port = 3000
-var mysql = require('mysql');
-const dbConnectionParams = require("./db-config");
-var connectionTest = mysql.createConnection(dbConnectionParams);
-module.exports.pool  = mysql.createPool(dbConnectionParams);
+var connectionTest = mysql.createConnection(dbConnectionParams)
+export const pool = mysql.createPool(dbConnectionParams)
 
 app.use(cors())
 app.use(express.json())
@@ -17,20 +19,19 @@ const myLogger = function (req, res, next) {
 
 app.use(myLogger)
 
-app.use(require('./emoji'));
+app.use(router)
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('App is running')
 })
 
 connectionTest.connect((err) => {
   if (err) {
-    console.log("Error connecting to database: "+err.stack);
-    throw err;
+    console.log("Error connecting to database: "+err.stack)
+    throw err
   }
-  console.log("Successfully connected to database with credentials.");
+  console.log("Successfully connected to database with credentials.")
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
 })
-
